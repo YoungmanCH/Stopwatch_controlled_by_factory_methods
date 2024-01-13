@@ -1,4 +1,4 @@
-# Stopwatch_controlled_by_factroy_methods
+# Stopwatch_controlled_by_factory_methods
 
 
 動作確認場合は、　stopwatch_factory.py　を実行して下さい。
