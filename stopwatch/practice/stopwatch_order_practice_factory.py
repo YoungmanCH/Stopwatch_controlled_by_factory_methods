@@ -1,15 +1,17 @@
 import abc
-from stopwatch import ConsoleStopwatch
-
+from console_stopwatch.stopwatch import ConsoleStopwatch
 
 # Factory Class
 class StopwatchFactory():
     def __init__(self):
+        print('5')
         self.stopwatch = self.settings()
+        print('8')
         self.general_functions()
 
     # Template method.
     def general_functions(self):
+        print('9')
         self.stopwatch.runtime()
         self.stopwatch.available_user()
 
@@ -17,56 +19,53 @@ class StopwatchFactory():
     def settings(self):
         pass
 
-    @abc.abstractmethod
-    def run_stopwatch(self):
-        pass
-
-    @staticmethod
-    def get_stopwatch(category: str):
-        match category:
-            case 'ConsoleStopwatchFactory':
-                return ConsoleStopwatchFactory()
-            case _:
-                raise Exception('Error: missing stopwatch.')
-        
-        
+    print('1')
 
 
 # Expanded StopwatchFactory Class
 class ConsoleStopwatchFactory(StopwatchFactory):
+    print('2')
+
+    # Return ConsoleStopwatchController() to self.stopwatch()
     def settings(self):
-        return ConsoleStopwatchSettings()
+        print('6')
+        return ConsoleStopwatchController()
 
 
-# Abstract class
 class StopwatchGeneralFunctions:
+
+    def __init__(self):
+        print('7')
+
     @abc.abstractmethod
     def runtime(self):
+        print('11')
         print("Console stopwatch is running")
 
     @abc.abstractmethod
     def available_user(self):
         print('No user')
 
+    print('3')
 
-class ConsoleStopwatchSettings(StopwatchGeneralFunctions):
+
+class ConsoleStopwatchController(StopwatchGeneralFunctions):
+    print('4')
+
+    # 5
     def runtime(self):
+        print('10')
         super().runtime()
 
+    # 7
     def available_user(self):
+        print('12')
         print('user: Youngman')
 
-
-class ConsoleStopwatchController:
+    # 8
     def run_stopwatch(self):
         ConsoleStopwatch()
-        
-
-def main():
-    stopwatch_category = 'ConsoleStopwatchFactory'
-    StopwatchFactory.get_stopwatch(stopwatch_category)
-    ConsoleStopwatchController().run_stopwatch()
 
 
 if __name__ == '__main__':
-    main()
+    ConsoleStopwatchFactory()
