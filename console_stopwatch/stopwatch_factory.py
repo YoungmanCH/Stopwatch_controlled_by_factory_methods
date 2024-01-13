@@ -21,6 +21,16 @@ class StopwatchFactory():
     def run_stopwatch(self):
         pass
 
+    @staticmethod
+    def get_stopwatch(category: str):
+        match category:
+            case 'ConsoleStopwatchFactory':
+                return ConsoleStopwatchFactory()
+            case _:
+                raise Error('Error: missing stopwatch.')
+        
+        
+
 
 # Expanded StopwatchFactory Class
 class ConsoleStopwatchFactory(StopwatchFactory):
@@ -51,9 +61,15 @@ class ConsoleStopwatchController:
     def run_stopwatch(self):
         ConsoleStopwatch()
 
+class StopwatchGenerator:
+    def __init__(self):
+        
+
 
 def main():
-    ConsoleStopwatchFactory()
+    stopwatch_category = 'ConsoleStopwatch'
+    StopwatchFactory.get_stopwatch(stopwatch_category)
+    # ConsoleStopwatchFactory()
     ConsoleStopwatchController().run_stopwatch()
 
 
